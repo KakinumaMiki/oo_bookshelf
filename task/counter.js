@@ -1,7 +1,5 @@
-// b. 作成したCounterクラスに以下の機能を追加してください。
-
-// - down: 呼ばれるとカウントが一つ減る
-// - resetValue: 呼ばれると今カウントしている内容が0にリセットされる
+// Counterクラスのインスタンスを2つ作成して、
+// それぞれのカウントが無関係に増減することを確認できるサンプルコードを書いてください。
 class Counter {
   constructor() {
     this.count = 0;
@@ -28,12 +26,13 @@ class Counter {
   }
 }
 
-let counter = new Counter;
-counter.up();
-console.log(counter.getValue()); // => 1と表示される
-counter.up();
-console.log(counter.getValue()); // => 2と表示される
-counter.down();
-console.log(counter.getValue()); // => 1と表示される
-counter.resetValue();
-console.log(counter.getValue()); // => 0と表示される
+let counter1 = new Counter;
+let counter2 = new Counter;
+counter1.up();
+counter1.up();
+console.log(counter1.getValue()); // => 2と表示される
+
+counter2.down();
+console.log(counter2.getValue()); // => -1と表示される
+counter2.resetValue();
+console.log(counter2.getValue()); // => 0と表示される
