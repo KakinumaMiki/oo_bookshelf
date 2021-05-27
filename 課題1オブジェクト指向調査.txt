@@ -17,3 +17,16 @@ https://www.rstone-jp.com/column/200831no2/
 https://medium-company.com/オブジェクト指向/#i
 「親」となるクラスの機能を「子」となるクラスが引き継いで使うこと。
 また、クラスを別の製品の開発で再利用すること。
+
+オブジェクト指向における「カプセル化」
+https://medium-company.com/オブジェクト指向/#i
+https://blog.codecamp.jp/object-orientation-explanation
+オブジェクトが持つプロパティ（属性）などの情報を外部から直接書き換えられないように隠した状態のこと。
+アクセス修飾子で、その機能を公開するのか、非公開にするのかを明確に制御できる。
+カプセル化した機能をどのレベルまで公開するか明確にすることで、外部から想定外な使い方をされる心配はなく無駄な障害を防ぐことができる。
+
+オブジェクト指向における「ポリモーフィズム」
+https://blog.codecamp.jp/object-orientation-explanation
+https://medium-company.com/オブジェクト指向/#i
+同じ命令をしても、クラスによって動作が異なること。
+また、同じ処理で異なる動作を実現する考え方のこと。
