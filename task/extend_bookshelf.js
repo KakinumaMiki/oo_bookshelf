@@ -70,12 +70,11 @@ class Bookshelf {
 class RejectedBocchanBookshelf extends Bookshelf {
   constructor() {
     super(); // 親のconstructorを呼びます
-    this.title = "坊ちゃん";
   }
 
   // 親クラスが作っているメソッドを上書き（オーバーライド）できます。
   canAddBook(book) {
-    return book.getTitle() !== this.title;
+    return book.getTitle() !== '坊ちゃん';
   }
 }
 
