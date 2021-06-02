@@ -29,8 +29,31 @@ https://blog.codecamp.jp/object-orientation-explanation
 https://blog.codecamp.jp/object-orientation-explanation
 https://medium-company.com/オブジェクト指向/#i
 https://jpazamu.com/polymorphism/
-同じ命令をしても、クラスによって動作が異なること。
+異なるクラス毎に命令を統一することができる
 また、同じ処理で異なる動作を実現する考え方のこと。
 呼び出した関数が呼び出し元のオブジェクトに適した振る舞いをすること。
 コードを綺麗にまとめることができる。
-プログラムの変更に強くなる。
+プログラムの変更に強くなる。拡張がしやすい。
+
+例）
+function hoge() {
+  …
+  getName(){
+
+  }
+}
+function fuge() {
+  …
+  getName(){
+    
+  }
+}
+-- ポリモーフィズムを使用しない時 --
+const hoge = hoge.getName();
+const fuge = fuge.getName();
+
+-- ポリモーフィズムを使用する時 --
+const str = ['hoge', 'fuge'];
+for (let i =0; i < str.length; i++) {
+  str[i].getName();
+}
