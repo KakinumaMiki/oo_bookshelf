@@ -1,5 +1,7 @@
 // 商品の情報を扱うクラス
 class Item {
+  #productName
+  #price
 
   constructor(productName, price) {
     this.productName = productName;
@@ -13,25 +15,29 @@ class Item {
   getPrice() {
     return this.price;
   }
+
+  toJSON() {
+    return { productName: this.#productName, price: this.#price };
+  }
 }
 
 class VendingMachine {
   #items
   #price
   #index
-  
+
   // 商品の初期登録
   static valueOf(arrayOfHash) {
     let vendingMachine = new this;
-    
-    for (let i = 0; i < arrayOfHash.length; i++){
+
+    for (let i = 0; i < arrayOfHash.length; i++) {
       let hash = arrayOfHash[i];
       let items = new Item(hash.productName, hash.price);
       vendingMachine.addItem(items);
     }
     return vendingMachine;
   }
-  
+
   constructor() {
     this.#items = [];
   }
@@ -42,23 +48,18 @@ class VendingMachine {
 
   // 商品の購入 戻り値Item
   buy(productName, cash) {
-    if(this.canBuy(productName)) {
-      if (this.#price <= cash) {
-        let buyItem = this.#items[this.#index];
-        this.#items.splice(this.#index, 1);
-        return buyItem;
-      } else {
-        throw new Error('cashが商品の価格を下回りました');
-      }
-    } else {
-      throw new Error('在庫が0件です');
-    }
+    if (!this.canBuy(productName)) throw new Error('在庫が0件です');
+    if (this.#price > cash) throw new Error('cashが商品の価格を下回りました');
+    let buyItem = this.#items[this.#index];
+    this.#items.splice(this.#index, 1);
+    return buyItem;
+
   }
 
   // 商品の在庫チェック 戻り値boolean
   canBuy(productName) {
-    for(let i = 0; i < this.#items.length; i++) {
-      if(this.#items[i].getProductName() === productName) {
+    for (let i = 0; i < this.#items.length; i++) {
+      if (this.#items[i].getProductName() === productName) {
         this.#price = this.#items[i].getPrice();
         this.#index = i;
         return true;
@@ -75,15 +76,15 @@ class VendingMachine {
 
 // 初期商品
 let items = [
-  {productName: 'コーラ', price: 120},
-  {productName: '水', price: 100},
-  {productName: 'お茶', price: 110}
+  { productName: 'コーラ', price: 120 },
+  { productName: '水', price: 100 },
+  { productName: 'お茶', price: 110 }
 ];
 
 let vendingMachine = VendingMachine.valueOf(items);
 vendingMachine.addItem(new Item('オレンジ', 130)); // 商品の補充
 // vendingMachine.getValue(); // 確認用
-if(vendingMachine.canBuy('水')){
+if (vendingMachine.canBuy('水')) {
   console.log('在庫があるので買えます');
 } else {
   console.log('在庫がないので買えません')
@@ -91,18 +92,18 @@ if(vendingMachine.canBuy('水')){
 
 try {
   console.log(vendingMachine.buy('オレンジ', 90)); // 商品の購入
-} catch(e) {
+} catch (e) {
   console.log(e); // => cashが商品の価格を下回りました
 }
 
 try {
   console.log(vendingMachine.buy('オレンジ', 130)); // 商品の購入 => Item { productName: 'オレンジ', price: 130 }
-} catch(e) {
+} catch (e) {
   console.log(e);
 }
 
 try {
   console.log(vendingMachine.buy('オレンジ', 140)); // 商品の購入
-} catch(e) {
+} catch (e) {
   console.log(e); // => 在庫が0件です
 }
