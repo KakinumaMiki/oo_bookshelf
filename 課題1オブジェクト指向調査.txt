@@ -28,5 +28,9 @@ https://blog.codecamp.jp/object-orientation-explanation
 オブジェクト指向における「ポリモーフィズム」
 https://blog.codecamp.jp/object-orientation-explanation
 https://medium-company.com/オブジェクト指向/#i
+https://jpazamu.com/polymorphism/
 同じ命令をしても、クラスによって動作が異なること。
 また、同じ処理で異なる動作を実現する考え方のこと。
+呼び出した関数が呼び出し元のオブジェクトに適した振る舞いをすること。
+コードを綺麗にまとめることができる。
+プログラムの変更に強くなる。
